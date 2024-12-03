@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.css';
 
 // Example 1: Basic JSX and Conditional Rendering
-function Message() {
+export function Message() {
   const name = 'Nirav'; // Static name for this example
   if (name) {
     return <h1 className="text-center text-primary">Hello {name}!</h1>;
@@ -12,10 +11,9 @@ function Message() {
 }
 
 // Example 2: Button with State (useState)
-function Button() {
+export function Button() {
   const [count, setCount] = useState(0); // State to keep track of the button click count
 
-  // Event handler to increment the count
   const incrementCount = () => setCount(count + 1);
 
   return (
@@ -29,7 +27,7 @@ function Button() {
 }
 
 // Example 3: List Rendering (Rendering a List of Items)
-function ItemList() {
+export function ItemList() {
   const items = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'];
 
   return (
@@ -45,14 +43,12 @@ function ItemList() {
 }
 
 // Example 4: useEffect Hook (Simulating Component Did Mount)
-function Timer() {
+export function Timer() {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    // Set up a timer when the component mounts
     const interval = setInterval(() => setSeconds((prev) => prev + 1), 1000);
-    
-    // Clean up the interval when the component unmounts
+
     return () => clearInterval(interval);
   }, []);
 
@@ -60,7 +56,7 @@ function Timer() {
 }
 
 // Example 5: Controlled Form Input
-function ControlledForm() {
+export function ControlledForm() {
   const [input, setInput] = useState('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,7 +89,7 @@ function ControlledForm() {
 }
 
 // Example 6: Toggle Button (Light / Dark Mode)
-function ToggleMode() {
+export function ToggleMode() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const toggleMode = () => {
@@ -113,7 +109,7 @@ function ToggleMode() {
 }
 
 // Example 7: Dynamic Styles with State
-function DynamicStyleExample() {
+export function DynamicStyleExample() {
   const [isRed, setIsRed] = useState(true);
 
   const toggleColor = () => {
@@ -133,7 +129,7 @@ function DynamicStyleExample() {
 }
 
 // Example 8: Card UI Example
-function CardExample() {
+export function CardExample() {
   return (
     <div className="card mt-4" style={{ width: '18rem' }}>
       <img
@@ -150,27 +146,3 @@ function CardExample() {
   );
 }
 
-// Main App Component that includes all examples
-function App() {
-  return (
-    <div className="container mt-5">
-      <h1 className="text-center">Welcome to React Examples!</h1>
-
-      <Message />
-      <Button />
-      <ItemList />
-      <Timer />
-      <ControlledForm />
-      <ToggleMode />
-      <DynamicStyleExample />
-      <CardExample />
-    </div>
-  );
-}
-
-// Rendering the App Component to the root
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);

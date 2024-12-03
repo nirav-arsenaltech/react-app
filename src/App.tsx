@@ -1,13 +1,26 @@
-import Message  from "./Message"
-import ListGroup from "./components/ListGroup";
+import React from 'react';
+import { Message, Button, ItemList, Timer, ControlledForm, ToggleMode, DynamicStyleExample, CardExample } from './Message';
 
-function App(){
-  return <div><Message/></div>;
-  // return <div><ListGroup/></div>
+function App() {
+  return (
+    <div className="container mt-5">
+      <h1 className="text-center">Welcome to React Examples!</h1>
+
+      <Message />
+      <Button />
+      <ItemList />
+      <Timer />
+      <ControlledForm />
+      <ToggleMode />
+      <DynamicStyleExample />
+      <CardExample />
+    </div>
+  );
 }
 
-
 export default App;
+
+
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import './App.css'
