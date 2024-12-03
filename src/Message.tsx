@@ -146,3 +146,65 @@ export function CardExample() {
   );
 }
 
+type Item = {
+    id: number;
+    name: string;
+    color: string;
+  };
+
+  
+export function DragAndDropExample() {
+    const colors = ['#FFDDC1', '#FFABAB', '#FFC3A0', '#D5AAFF', '#85E3FF', '#B9FBC0'];
+  
+    const initialItems: Item[] = [
+      { id: 1, name: 'Item 1', color: colors[0] },
+      { id: 2, name: 'Item 2', color: colors[1] },
+      { id: 3, name: 'Item 3', color: colors[2] },
+      { id: 4, name: 'Item 4', color: colors[3] },
+    ];
+  
+    const [items, setItems] = useState(initialItems);
+    const [draggedItem, setDraggedItem] = useState<Item | null>(null);
+  
+    const onDragStart = (item: Item) => {
+      setDraggedItem(item);
+    };
+  
+    const onDrop = (targetId: number) => {
+      if (!draggedItem) return;
+  
+      const updatedItems = items.filter((item) => item.id !== draggedItem.id);
+      const targetIndex = updatedItems.findIndex((item) => item.id === targetId);
+  
+      updatedItems.splice(targetIndex + 1, 0, draggedItem);
+      setItems(updatedItems);
+      setDraggedItem(null);
+    };
+  
+    return (
+      <div className="mt-4">
+        <h2 className="text-center">Drag and Drop Example </h2>
+        <ul className="list-group">
+          {items.map((item) => (
+            <li
+              key={item.id}
+              className="list-group-item"
+              draggable
+              onDragStart={() => onDragStart(item)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={() => onDrop(item.id)}
+              style={{
+                cursor: 'grab',
+                userSelect: 'none',
+                backgroundColor: item.color,
+                color: '#333',
+              }}
+            >
+              {item.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+  

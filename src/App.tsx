@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message, Button, ItemList, Timer, ControlledForm, ToggleMode, DynamicStyleExample, CardExample } from './Message';
+import { Message, Button, ItemList, Timer, ControlledForm, ToggleMode, DynamicStyleExample, CardExample ,DragAndDropExample} from './Message';
 
 function App() {
   return (
@@ -14,6 +14,8 @@ function App() {
       <ToggleMode />
       <DynamicStyleExample />
       <CardExample />
+      <DragAndDropExample />
+      
     </div>
   );
 }
