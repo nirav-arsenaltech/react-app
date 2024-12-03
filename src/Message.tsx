@@ -208,3 +208,94 @@ export function DragAndDropExample() {
     );
   }
   
+  export function TicTacToe() {
+    const [board, setBoard] = useState(Array(9).fill(null));
+    const [isXTurn, setIsXTurn] = useState(true);
+    const [winner, setWinner] = useState<string | null>(null);
+  
+    const winningCombinations = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+  
+    const checkWinner = (currentBoard: string[]) => {
+      for (const combo of winningCombinations) {
+        const [a, b, c] = combo;
+        if (
+          currentBoard[a] &&
+          currentBoard[a] === currentBoard[b] &&
+          currentBoard[a] === currentBoard[c]
+        ) {
+          return currentBoard[a];
+        }
+      }
+      return null;
+    };
+  
+    const handleCellClick = (index: number) => {
+      if (board[index] || winner) return;
+  
+      const newBoard = [...board];
+      newBoard[index] = isXTurn ? 'X' : 'O';
+      setBoard(newBoard);
+  
+      const gameWinner = checkWinner(newBoard);
+      if (gameWinner) {
+        setWinner(gameWinner);
+      } else if (newBoard.every((cell) => cell)) {
+        setWinner('Draw');
+      }
+  
+      setIsXTurn(!isXTurn);
+    };
+  
+    const resetGame = () => {
+      setBoard(Array(9).fill(null));
+      setIsXTurn(true);
+      setWinner(null);
+    };
+  
+    return (
+      <div className="mt-4">
+        <h2 className="text-center">Tic Tac Toe</h2>
+        <div className="d-flex flex-wrap justify-content-center" style={{ width: '180px', margin: 'auto' }}>
+          {board.map((cell, index) => (
+            <div
+              key={index}
+              className="border d-flex align-items-center justify-content-center"
+              style={{
+                width: '60px',
+                height: '60px',
+                fontSize: '24px',
+                cursor: 'pointer',
+                backgroundColor: winner && cell ? '#d4edda' : '#fff',
+                color: winner && cell ? '#155724' : '#000',
+              }}
+              onClick={() => handleCellClick(index)}
+            >
+              {cell}
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-3">
+          {winner ? (
+            <h4 className="text-success">
+              {winner === 'Draw' ? 'It\'s a Draw!' : `Winner: ${winner}`}
+            </h4>
+          ) : (
+            <h4>Next Turn: {isXTurn ? 'X' : 'O'}</h4>
+          )}
+          <button className="btn btn-primary mt-2" onClick={resetGame}>
+            Restart Game
+          </button>
+        </div>
+      </div>
+    );
+  }
+  
