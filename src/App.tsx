@@ -1,14 +1,15 @@
-import React from 'react';
-import { Message, Button, ItemList, Timer, ControlledForm, ToggleMode, DynamicStyleExample, CardExample ,DragAndDropExample,TicTacToe} from './Message';
-
+import './App.css';
+import { Button, Timer, ControlledForm, ToggleMode, DynamicStyleExample, CardExample ,DragAndDropExample,TicTacToe} from './Message';
+import { Message } from './components/Message';
+import { ItemList } from './components/ItemList';
 function App() {
   return (
     <div className="container mt-5">
-      <h1 className="text-center">Welcome to React Examples!</h1>
+      <h1 className="text-center text-blue-500">Welcome to React Examples!</h1>
 
-      <Message />
+      <Message name="nirav" />
       <Button />
-      <ItemList />
+      <ItemList /> // Example 3: List Rendering (Rendering a List of Items)
       <Timer />
       <ControlledForm />
       <ToggleMode />

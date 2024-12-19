@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-
-// Example 1: Basic JSX and Conditional Rendering
-export function Message() {
-  const name = 'Nirav'; // Static name for this example
-  if (name) {
-    return <h1 className="text-center text-primary">Hello {name}!</h1>;
-  }
-  return <h1 className="text-center text-secondary">Hello React!</h1>;
-}
+// import 'bootstrap/dist/css/bootstrap.css';
+import './App.css'; 
 
 // Example 2: Button with State (useState)
 export function Button() {
@@ -18,26 +10,10 @@ export function Button() {
 
   return (
     <div className="text-center">
-      <p className="lead">Button clicked {count} times</p>
-      <button className="btn btn-success" onClick={incrementCount}>
+      <p className="leading-5">Button clicked {count} times</p>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={incrementCount}>
         Click me
       </button>
-    </div>
-  );
-}
-
-// Example 3: List Rendering (Rendering a List of Items)
-export function ItemList() {
-  const items = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'];
-
-  return (
-    <div className="mt-4">
-      <h2>Fruits List</h2>
-      <ul className="list-group">
-        {items.map((item, index) => (
-          <li key={index} className="list-group-item">{item}</li>
-        ))}
-      </ul>
     </div>
   );
 }
@@ -154,13 +130,13 @@ type Item = {
 
   
 export function DragAndDropExample() {
-    const colors = ['#FFDDC1', '#FFABAB', '#FFC3A0', '#D5AAFF', '#85E3FF', '#B9FBC0'];
+    // const colors = ['#FFDDC1', '#FFABAB', '#FFC3A0', '#D5AAFF', '#85E3FF', '#B9FBC0'];
   
     const initialItems: Item[] = [
-      { id: 1, name: 'Item 1', color: colors[0] },
-      { id: 2, name: 'Item 2', color: colors[1] },
-      { id: 3, name: 'Item 3', color: colors[2] },
-      { id: 4, name: 'Item 4', color: colors[3] },
+      { id: 1, name: 'Item 1', color: 'red-700' },
+      { id: 2, name: 'Item 2', color: 'blue-700' },
+      { id: 3, name: 'Item 3', color: 'green-700' },
+      { id: 4, name: 'Item 4', color: 'yellow-700' },
     ];
   
     const [items, setItems] = useState(initialItems);
@@ -188,17 +164,17 @@ export function DragAndDropExample() {
           {items.map((item) => (
             <li
               key={item.id}
-              className="list-group-item"
+              className={`list-group-item text-black ${item.color ? 'bg-'+item.color : 'text-gray-500'}`}
               draggable
               onDragStart={() => onDragStart(item)}
               onDragOver={(e) => e.preventDefault()}
               onDrop={() => onDrop(item.id)}
-              style={{
-                cursor: 'grab',
-                userSelect: 'none',
-                backgroundColor: item.color,
-                color: '#333',
-              }}
+              // style={{
+              //   cursor: 'grab',
+              //   userSelect: 'none',
+              //   backgroundColor: item.color,
+              //   color: '#333',
+              // }}
             >
               {item.name}
             </li>
