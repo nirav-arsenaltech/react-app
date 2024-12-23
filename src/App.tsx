@@ -9,7 +9,7 @@ function App() {
 
       <Message name="nirav" />
       <Button />
-      <ItemList /> // Example 3: List Rendering (Rendering a List of Items)
+      <ItemList />
       <Timer />
       <ControlledForm />
       <ToggleMode />

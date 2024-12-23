@@ -109,7 +109,7 @@ export function CardExample() {
   return (
     <div className="card mt-4" style={{ width: '18rem' }}>
       <img
-        src="https://via.placeholder.com/150"
+        src="https://picsum.photos/200"
         className="card-img-top"
         alt="Placeholder"
       />
@@ -130,13 +130,13 @@ type Item = {
 
   
 export function DragAndDropExample() {
-    // const colors = ['#FFDDC1', '#FFABAB', '#FFC3A0', '#D5AAFF', '#85E3FF', '#B9FBC0'];
+    const colors = ['#FFDDC1', '#FFABAB', '#FFC3A0', '#D5AAFF', '#85E3FF', '#B9FBC0'];
   
     const initialItems: Item[] = [
-      { id: 1, name: 'Item 1', color: 'red-700' },
-      { id: 2, name: 'Item 2', color: 'blue-700' },
-      { id: 3, name: 'Item 3', color: 'green-700' },
-      { id: 4, name: 'Item 4', color: 'yellow-700' },
+      { id: 1, name: 'Item 1', color: colors[0] },
+      { id: 2, name: 'Item 2', color: colors[1] },
+      { id: 3, name: 'Item 3', color: colors[4] },
+      { id: 4, name: 'Item 4', color: colors[5] },
     ];
   
     const [items, setItems] = useState(initialItems);
@@ -169,12 +169,12 @@ export function DragAndDropExample() {
               onDragStart={() => onDragStart(item)}
               onDragOver={(e) => e.preventDefault()}
               onDrop={() => onDrop(item.id)}
-              // style={{
-              //   cursor: 'grab',
-              //   userSelect: 'none',
-              //   backgroundColor: item.color,
-              //   color: '#333',
-              // }}
+              style={{
+                cursor: 'grab',
+                userSelect: 'none',
+                backgroundColor: item.color,
+                color: '#333',
+              }}
             >
               {item.name}
             </li>
