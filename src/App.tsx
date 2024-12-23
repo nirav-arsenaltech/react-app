@@ -1,8 +1,16 @@
+import { useState } from 'react';
 import './App.css';
-import { Button, Timer, ControlledForm, ToggleMode, DynamicStyleExample, CardExample ,DragAndDropExample,TicTacToe} from './Message';
+import { Button, Timer, ControlledForm, ToggleMode, DynamicStyleExample, CardExample, DragAndDropExample, TicTacToe } from './Message';
 import { Message } from './components/Message';
 import { ItemList } from './components/ItemList';
+import { Calculator } from './components/Calculator';
+
 function App() {
+  const [showCalculator, setShowCalculator] = useState(false);
+
+  const toggleCalculator = () => {
+    setShowCalculator(!showCalculator);
+  };
   return (
     <div className="container mt-5">
       <h1 className="text-center text-blue-500">Welcome to React Examples!</h1>
@@ -17,7 +25,16 @@ function App() {
       <CardExample />
       <DragAndDropExample />
       <TicTacToe />
-      
+
+      <button className="btn btn-primary mt-4" onClick={toggleCalculator}>Open Calculator</button>
+      {showCalculator && (
+        <div className="popup-overlay">
+          <div className="popup-container">
+            <Calculator />
+            <button className="btn btn-danger" onClick={toggleCalculator}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
